@@ -1,0 +1,36 @@
+﻿
+> insure-drive-app@0.1.0 build
+> next build
+
+  Γû▓ Next.js 14.2.15
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/10) ...
+   Generating static pages (2/10) 
+   Generating static pages (4/10) 
+   Generating static pages (7/10) 
+ Γ£ô Generating static pages (10/10)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+Γöî Γùï /                                    3.8 kB          232 kB
+Γö£ Γùï /_not-found                          873 B            88 kB
+Γö£ Γùï /api/ai-risk-engine                  0 B                0 B
+Γö£ Γùï /api/aqi                             0 B                0 B
+Γö£ ╞Æ /api/loss-predictor                  0 B                0 B
+Γö£ Γùï /api/weather                         0 B                0 B
+Γöö Γùï /dashboard                           21.1 kB         249 kB
++ First Load JS shared by all            87.2 kB
+  Γö£ chunks/117-dc2c3eaf03467f55.js       31.6 kB
+  Γö£ chunks/fd9d1056-c5c21d97cb626b7e.js  53.6 kB
+  Γöö other shared chunks (total)          1.95 kB
+
+
+Γùï  (Static)   prerendered as static content
+╞Æ  (Dynamic)  server-rendered on demand
+

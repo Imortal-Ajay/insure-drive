@@ -1,0 +1,47 @@
+﻿
+> insure-drive-app@0.1.0 build
+> next build
+
+  Γû▓ Next.js 14.2.15
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully
+   Linting and checking validity of types ...
+node.exe : 
+At C:\Program 
+Files\nodejs\npm.ps1:29 
+char:3
++   & $NODE_EXE 
+$NPM_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: (:  
+  String) [], RemoteExc   
+ eption
+    + FullyQualifiedError 
+   Id : NativeCommandErr  
+  or
+ 
+Failed to compile.
+
+./src/app/dashboard/page.t
+sx
+11:10  Error: 'ZONE_RISK' 
+is defined but never 
+used.  @typescript-eslint/
+no-unused-vars
+
+./src/components/RiskCard.
+tsx
+70:10  Error: 
+'BreakdownBar' is defined 
+but never used.  @typescri
+pt-eslint/no-unused-vars
+
+info  - Need to disable 
+some ESLint rules? Learn 
+more here: https://nextjs.
+org/docs/basic-features/es
+lint#disabling-rules

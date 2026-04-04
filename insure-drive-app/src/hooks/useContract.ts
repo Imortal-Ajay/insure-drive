@@ -65,12 +65,20 @@ export function useContract(signer: JsonRpcSigner | null): ContractHook {
       const contract = getContract(signer);
       const zoneKey = encodeZone(zone);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const ev: any = await contract.getEvent(zoneKey);
+      const ev: any = await contract.getFunction('getEvent')(zoneKey);
+      
+      const isActive = Boolean(ev[0] ?? ev.isActive);
+      const hours = Number(ev[1] ?? ev.payoutPerEvent ?? 0n);
+      
+      // Smart contract pays PAY_PER_HOUR (0.01 ETH) per hour of payout
+      const payoutEth = (hours * 0.01).toString();
+      
       setEventData({
-        isActive: Boolean(ev[0] ?? ev.isActive),
-        payoutPerEvent: ethers.formatEther(ev[1] ?? ev.payoutPerEvent ?? 0n),
+        isActive: isActive,
+        payoutPerEvent: payoutEth,
         timestamp: Number(ev[2] ?? ev.timestamp ?? 0),
       });
+
     } catch (err) {
       console.error('[fetchEventData]', err);
     }
@@ -127,17 +135,10 @@ export function useContract(signer: JsonRpcSigner | null): ContractHook {
       return true;
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : 'Unknown error';
-      if (message.includes('Not an oracle')) {
-        toast.error('Oracle role required. Running in Demo Mode instead.', { id: toastId, duration: 4000 });
-      } else if (message.includes('user rejected')) {
+      if (message.includes('user rejected')) {
         toast.error('Transaction rejected.', { id: toastId });
       } else {
-        // Fallback for demo
-        toast('⚡ Demo Mode: Event simulated locally (oracle tx failed)', {
-          id: toastId,
-          icon: '🎭',
-          duration: 4000,
-        });
+        toast.error(`Transaction failed (Check if you are an Oracle): ${message.slice(0, 100)}…`, { id: toastId, duration: 6000 });
       }
       return false;
     } finally {
